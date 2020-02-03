@@ -43,10 +43,10 @@ window.onload = function () {
         const tomLoop = new Tone.Loop(time => tom.trigger(time), '2n')
 
         kickLoop.start(0).stop(compasses)
-        snareLoop.start('6t').stop(compasses)
+        snareLoop.start('0.28').stop(compasses)
         hihatLoop.start(0).stop(compasses)
-        hihatLoop2.start('6n').stop(compasses)
-        tomLoop.start('4n.').stop(compasses)
+        hihatLoop2.start('0.40').stop(compasses)
+        tomLoop.start('0.88').stop(compasses)
 
         Tone.Transport.start();
       });
