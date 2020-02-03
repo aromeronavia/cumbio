@@ -1,11 +1,24 @@
 <html>
   <style>
 body {
-  display: flex;
   margin-top: 100px;
   margin-left: 100px;
   background-color: #c1c1c1;
 }
+
+#buttons {
+  display: flex;
+}
+
+input[type="range"] {
+  margin-top: 40px;
+  margin-left: 100px;
+}
+
+#tempoNumber {
+  display: inline-block;
+}
+
 button {
   color: black;
   border-radius: 10%;
@@ -19,9 +32,13 @@ button {
   </head>
 
   <body>
-    <button id="start"> Play! </button>
-    <button id="stop"> Stop! </button>
-    <button id="drum"> Drum </button>
+    <div id="buttons">
+      <button id="start"> Play! </button>
+      <button id="stop"> Stop! </button>
+      <button id="drum"> Drum </button>
+    </div>
+    <input id="slider" type="range" min="10" max="200" step="1" value="120">
+    <p id="tempoNumber"> </p>
   </body>
 
   <script type="text/javascript" src="script.js"></script>

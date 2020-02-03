@@ -6,13 +6,19 @@ import Tom from './tom'
 import hihatSample from './sounds/hihat.wav';
 
 window.onload = function () {
-  var context = new AudioContext;
+  const context = new AudioContext;
 
-  var startButton = document.getElementById('start');
-  var stopButton = document.getElementById('stop');
-  var drumButton = document.getElementById('drum');
+  const startButton = document.getElementById('start');
+  const stopButton = document.getElementById('stop');
+  const drumButton = document.getElementById('drum');
+  const tempoSlider = document.getElementById('slider');
+  const tempoNumber = document.getElementById('tempoNumber');
 
-  var getBuffer = function(url, context) {
+  const INITIAL_TEMPO = 100
+
+  tempoNumber.innerHTML = INITIAL_TEMPO
+
+  const getBuffer = function(url, context) {
     return window.fetch(url)
       .then(response => response.arrayBuffer())
       .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
@@ -26,9 +32,9 @@ window.onload = function () {
         var hihat = new HiHat(context, buffer);
         var tom = new Tom(context)
 
-        Tone.Transport.bpm.value = 100;
+        Tone.Transport.bpm.value = INITIAL_TEMPO;
 
-        const compasses = '4m'
+        const compasses = '12m'
 
         const kickLoop = new Tone.Loop(time => kick.trigger(time), '4n')
         const snareLoop = new Tone.Loop(time => snare.trigger(time), '2n')
@@ -37,7 +43,7 @@ window.onload = function () {
         const tomLoop = new Tone.Loop(time => tom.trigger(time), '2n')
 
         kickLoop.start(0).stop(compasses)
-        snareLoop.start('9n').stop(compasses)
+        snareLoop.start('6t').stop(compasses)
         hihatLoop.start(0).stop(compasses)
         hihatLoop2.start('6n').stop(compasses)
         tomLoop.start('4n.').stop(compasses)
@@ -60,4 +66,11 @@ window.onload = function () {
 
     Tone.Transport.start();
   })
+
+  tempoSlider.addEventListener('change', function (event) {
+    const newTempo = parseInt(event.target.value);
+
+    Tone.Transport.bpm.value = newTempo
+    tempoNumber.innerHTML = newTempo
+  });
 }
