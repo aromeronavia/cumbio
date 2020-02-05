@@ -1,0 +1,22 @@
+body {
+  margin-top: 100px;
+  margin-left: 100px;
+  background-color: #c1c1c1;
+}
+
+#flex {
+  display: flex;
+  justify-content: center;
+}
+
+#tempoNumber {
+  display: inline-block;
+}
+
+button {
+  color: black;
+  border-radius: 10%;
+  width: 90px;
+  height: 40px;
+  margin-right: 28px;
+}

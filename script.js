@@ -56,17 +56,6 @@ window.onload = function () {
     Tone.Transport.stop();
   })
 
-  drumButton.addEventListener('click', function () {
-    const tom = new Tom(context)
-    const compasses = '4m'
-
-    const tomLoop = new Tone.Loop(time => tom.trigger(time), '4n')
-
-    tomLoop.start(0).stop(compasses)
-
-    Tone.Transport.start();
-  })
-
   tempoSlider.addEventListener('change', function (event) {
     const newTempo = parseInt(event.target.value);
 

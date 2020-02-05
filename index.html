@@ -1,44 +1,18 @@
 <html>
-  <style>
-body {
-  margin-top: 100px;
-  margin-left: 100px;
-  background-color: #c1c1c1;
-}
-
-#buttons {
-  display: flex;
-}
-
-input[type="range"] {
-  margin-top: 40px;
-  margin-left: 100px;
-}
-
-#tempoNumber {
-  display: inline-block;
-}
-
-button {
-  color: black;
-  border-radius: 10%;
-  width: 90px;
-  height: 40px;
-  margin-right: 28px;
-}
-  </style>
   <head>
     <title> Web Audio API </title>
+    <link rel="stylesheet" type="text/css" href="style.css"
   </head>
 
   <body>
-    <div id="buttons">
+    <div id="flex">
       <button id="start"> Play! </button>
       <button id="stop"> Stop! </button>
-      <button id="drum"> Drum </button>
     </div>
-    <input id="slider" type="range" min="10" max="200" step="1" value="120">
-    <p id="tempoNumber"> </p>
+    <div id="flex">
+      <input id="slider" type="range" min="10" max="150" step="1">
+      <p id="tempoNumber"> </p>
+    </div>
   </body>
 
   <script type="text/javascript" src="script.js"></script>
