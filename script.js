@@ -1,20 +1,26 @@
 import Tone from 'tone';
+import { guess } from 'web-audio-beat-detector';
+
 import Kick from './kick'
 import Snare from './snare'
 import HiHat from './hihat'
 import Tom from './tom'
 import hihatSample from './sounds/hihat.wav';
+import song from './sounds/song.mp3';
 
 window.onload = function () {
   const context = new AudioContext;
 
   const startButton = document.getElementById('start');
   const stopButton = document.getElementById('stop');
-  const drumButton = document.getElementById('drum');
+  const tempoButton = document.getElementById('tempoButton');
+
   const tempoSlider = document.getElementById('slider');
   const tempoNumber = document.getElementById('tempoNumber');
+  const tempoFromSong = document.getElementById('tempoFromSong');
 
-  const INITIAL_TEMPO = 100
+  const INITIAL_TEMPO = 153
+  let tempo = INITIAL_TEMPO
 
   tempoNumber.innerHTML = INITIAL_TEMPO
 
@@ -32,7 +38,7 @@ window.onload = function () {
         var hihat = new HiHat(context, buffer);
         var tom = new Tom(context)
 
-        Tone.Transport.bpm.value = INITIAL_TEMPO;
+        Tone.Transport.bpm.value = tempo;
 
         const compasses = '12m'
 
@@ -43,10 +49,10 @@ window.onload = function () {
         const tomLoop = new Tone.Loop(time => tom.trigger(time), '2n')
 
         kickLoop.start(0).stop(compasses)
-        snareLoop.start('0.28').stop(compasses)
+        snareLoop.start('9n').stop(compasses)
         hihatLoop.start(0).stop(compasses)
-        hihatLoop2.start('0.40').stop(compasses)
-        tomLoop.start('0.88').stop(compasses)
+        hihatLoop2.start('6n').stop(compasses)
+        tomLoop.start('4n.').stop(compasses)
 
         Tone.Transport.start();
       });
@@ -57,9 +63,18 @@ window.onload = function () {
   })
 
   tempoSlider.addEventListener('change', function (event) {
-    const newTempo = parseInt(event.target.value);
+    tempo = parseInt(event.target.value);
 
-    Tone.Transport.bpm.value = newTempo
-    tempoNumber.innerHTML = newTempo
+    Tone.Transport.bpm.value = tempo
+    tempoNumber.innerHTML = tempo
   });
+
+  tempoButton.addEventListener('click', function (event) {
+    getBuffer(song, context)
+      .then(guess, 30)
+      .then(({ bpm, offset }) => {
+        console.warn('tempo', bpm)
+        console.warn('offset', offset)
+      })
+  })
 }

@@ -12,8 +12,6 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "tailwindcss": "^1.1.4",
-    "tone": "^13.8.25",
-    "web-audio-beat-detector": "^7.0.84"
+    "tone": "^13.8.25"
   }
 }

@@ -1,17 +1,20 @@
 <html>
   <head>
     <title> Web Audio API </title>
-    <link rel="stylesheet" type="text/css" href="style.css"
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-
   <body>
     <div id="flex">
       <button id="start"> Play! </button>
       <button id="stop"> Stop! </button>
+      <button id="tempoButton"> Get Tempo! </button>
     </div>
     <div id="flex">
-      <input id="slider" type="range" min="10" max="150" step="1">
+      <input id="slider" type="range" min="10" max="180" step="1" value="153">
       <p id="tempoNumber"> </p>
+    </div>
+    <div id="flex">
+      <p id="tempoFromSong"> </p>
     </div>
   </body>
 
