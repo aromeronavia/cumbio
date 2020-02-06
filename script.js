@@ -1,5 +1,4 @@
 import Tone from 'tone';
-import { guess } from 'web-audio-beat-detector';
 
 import Kick from './kick'
 import Snare from './snare'
@@ -13,13 +12,11 @@ window.onload = function () {
 
   const startButton = document.getElementById('start');
   const stopButton = document.getElementById('stop');
-  const tempoButton = document.getElementById('tempoButton');
 
   const tempoSlider = document.getElementById('slider');
   const tempoNumber = document.getElementById('tempoNumber');
-  const tempoFromSong = document.getElementById('tempoFromSong');
 
-  const INITIAL_TEMPO = 153
+  const INITIAL_TEMPO = 120
   let tempo = INITIAL_TEMPO
 
   tempoNumber.innerHTML = INITIAL_TEMPO
@@ -68,13 +65,4 @@ window.onload = function () {
     Tone.Transport.bpm.value = tempo
     tempoNumber.innerHTML = tempo
   });
-
-  tempoButton.addEventListener('click', function (event) {
-    getBuffer(song, context)
-      .then(guess, 30)
-      .then(({ bpm, offset }) => {
-        console.warn('tempo', bpm)
-        console.warn('offset', offset)
-      })
-  })
 }
